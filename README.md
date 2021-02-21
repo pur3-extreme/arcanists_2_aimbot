@@ -1,5 +1,6 @@
 # arcanists_2_aimbot
 Aimbot for Arcanists 2
+
 Download Arcanists 2 for free: https://arcanists.online/
 
 ## CONTROLS
