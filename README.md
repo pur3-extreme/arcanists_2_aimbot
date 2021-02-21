@@ -2,7 +2,7 @@
 Aimbot for Arcanists 2
 
 
-'''CONTROLS
+CONTROLS
 F1 = set player position on mouse
 F2 = set target position on mouse
 F3 = calculate
@@ -19,5 +19,4 @@ HOW TO USE
 OTHER
 * time 1.48 works well for whisper bombs
 * F1 needs to be precise, a few pixels off and the trajectory is fucked up a bit
-* keeping the camera centered on the character avoids needing to press F1 every time'''
-
+* keeping the camera centered on the character avoids needing to press F1 every time
