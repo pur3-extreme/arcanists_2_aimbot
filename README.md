@@ -16,8 +16,6 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * F8 = maxv mode (trajectory is generated with maximized velocity)
 
 ## HOW TO USE
-* untested on resolutions other than 1920x1080
-* untested on Linux
 * zoom all the way out
 * press F1 exactly in the center of your player
 * press F2 on the target, then F3
@@ -25,6 +23,8 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * if it doesn't fire, the shot is impossible
 
 ## OTHER
+* untested on resolutions other than 1920x1080
+* untested on Linux
 * time 1.48 works well for whisper bombs
 * F1 needs to be precise, a few pixels off and the trajectory is fucked up a bit
 * keeping the camera centered on the character avoids needing to press F1 every time
