@@ -17,6 +17,7 @@ Email pur3_extreme@protonmail.com if you have suggestions
 
 ## HOW TO USE
 * untested on resolutions other than 1920x1080
+* untested on Linux
 * zoom all the way out
 * press F1 exactly in the center of your player
 * press F2 on the target, then F3
