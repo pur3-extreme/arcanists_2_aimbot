@@ -54,7 +54,7 @@ def relative_to_absolute_coords(rel_x, rel_y):
 def fire():
     angle, power = (custom_angle_field.get(), custom_power_field.get())
 
-    if angle == 'impossible' or power == 'impossible':
+    if (power, angle) != ('impossible', 'impossible'):
         return
 
     angle = float(custom_angle_field.get())
@@ -68,7 +68,7 @@ def fire():
 def calculate():
 
     power, angle = get_angle_power()
-    if power != 'impossible' and angle != 'impossible':
+    if (power, angle) != ('impossible', 'impossible'):
         angle, power = (f"{angle:.5f}", f"{power:.5f}")
 
     desired_angle_field.config(text = angle)
@@ -83,7 +83,13 @@ def calculate():
 def get_angle_power():
     mode = mode_field.cget('text')
 
-    t = float(time_field.get())
+    try: 
+        t = float(time_field.get())
+    except: 
+        time_field.delete(0, len(time_field.get()))
+        time_field.insert(0, 'invalid time')
+        return 'impossible', 'impossible'
+    
     xu, yu = get_float_tuple(user_field)
     xt, yt = get_float_tuple(target_field)
     x, y = (xt - xu, yu - yt)
