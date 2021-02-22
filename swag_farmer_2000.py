@@ -54,7 +54,7 @@ def relative_to_absolute_coords(rel_x, rel_y):
 def fire():
     angle, power = (custom_angle_field.get(), custom_power_field.get())
 
-    if (power, angle) != ('impossible', 'impossible'):
+    if (power, angle) == ('impossible', 'impossible'):
         return
 
     angle = float(custom_angle_field.get())
