@@ -8,6 +8,10 @@ Download Arcanists 2 for free: https://arcanists.online/
 * F2 = set target position on mouse
 * F3 = calculate
 * F4 = fire
+* F5 = time mode (projectile reaches target after specified time)
+* F6 = mousepos mode (trajectory is generated based on cursor angle)
+* F7 = minv mode (trajectory is generated with minimized velocity)
+* F8 = maxv mode (trajectory is generated with maximized velocity)
 
 ## HOW TO USE
 * untested on resolutions other than 1920x1080
