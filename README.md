@@ -3,6 +3,8 @@ Aimbot for Arcanists 2
 
 Download Arcanists 2 for free: https://arcanists.online/
 
+Email pur3_extreme@protonmail.com if you have suggestions
+
 ## CONTROLS
 * F1 = set player position on mouse
 * F2 = set target position on mouse
