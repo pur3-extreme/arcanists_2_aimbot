@@ -26,5 +26,5 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * untested on resolutions other than 1920x1080
 * untested on Linux
 * time 1.48 works well for whisper bombs
-* F1 needs to be precise, a few pixels off and the trajectory is fucked up a bit
+* F1 needs to be precise, a few pixels off and the trajectory is somewhat messed up
 * keeping the camera centered on the character avoids needing to press F1 every time
