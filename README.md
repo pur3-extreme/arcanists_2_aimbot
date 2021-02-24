@@ -16,6 +16,7 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * F8 = maxv mode (trajectory is generated with maximized velocity)
 
 ## HOW TO USE
+* use resizable window
 * zoom all the way out
 * press F1 exactly in the center of your player
 * press F2 on the target, then F3
