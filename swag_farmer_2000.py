@@ -4,7 +4,6 @@ import math
 import random
 import time
 from pynput import keyboard
-import PIL
 
 default_center = (960, 540)
 default_time = 1.5
@@ -13,20 +12,22 @@ min_v = 176.71
 max_v = 559.76+min_v
 default_radius = 100
 g = 441.79473198085058122053071945108
+y_offset = 0
+dot_rad = 2
 
 def update_mouse_pos():
     mouse_pos_field.config(text = pag.position())
     swag.after(1, update_mouse_pos)
 
-def coords_to_angle():
-    coords = pag.position()
-    center = get_float_tuple(user_field)
-    (x, y) = (coords[0] - center[0], center[1] - coords[1])
+# def coords_to_angle():
+#     coords = pag.position()
+#     center = get_float_tuple(user_field)
+#     (x, y) = (coords[0] - center[0], center[1] - coords[1])
 
-    angle = math.degrees(math.atan2(y, x))
-    if angle < 0:
-        angle = angle + 360
-    return f'{angle:.2f}'
+#     angle = math.degrees(math.atan2(y, x))
+#     if angle < 0:
+#         angle = angle + 360
+#     return f'{angle:.2f}'
 
 def angle_to_coords(angle, radius):
     x = math.cos(math.radians(angle)) * radius
@@ -71,6 +72,9 @@ def calculate():
     if (power, angle) != ('impossible', 'impossible'):
         angle, power = (f"{angle:.5f}", f"{power:.5f}")
 
+    set_dot(draw_t, target_field)
+    set_dot(draw_u, user_field)
+
     desired_angle_field.config(text = angle)
     desired_power_field.config(text = power)
 
@@ -79,6 +83,8 @@ def calculate():
 
     custom_power_field.delete(0, len(custom_power_field.get()))
     custom_power_field.insert(0, power)
+
+    update_canvas()
 
 def get_angle_power():
     mode = mode_field.cget('text')
@@ -92,7 +98,10 @@ def get_angle_power():
     
     xu, yu = get_float_tuple(user_field)
     xt, yt = get_float_tuple(target_field)
-    x, y = (xt - xu, yu - yt)
+    try:
+        x, y = (xt - xu, yu - yt)
+    except: 
+        return 'impossible', 'impossible'
 
     if mode == 'time':
         # https://math.stackexchange.com/a/273432
@@ -130,12 +139,42 @@ def get_power(v_init):
     return power
 
 def get_float_tuple(field):
+    int_tuple = ('impossible', 'impossible')
 
-    (x, y) = field.get().split(" ")
-    int_tuple = (float(x), float(y))
+    try: 
+        (x, y) = field.get().split(" ")
+        int_tuple = (float(x), float(y))
+    except:
+        field.delete(0, len(field.get()))
+        field.insert(0, 'invalid pos')
 
     return int_tuple
 
+def update_canvas():
+    
+    return
+
+def set_draw_w():
+    if draw_tl.geometry().split('x')[1].split('+')[0] == '1080':
+        draw_tl.geometry('400x400')
+        draw_tl.update_idletasks()
+        draw_tl.overrideredirect(False)
+    else: 
+        draw_tl.geometry('1920x1080')
+        draw_tl.update_idletasks()
+        draw_tl.overrideredirect(True)
+
+def set_dot(dot, field):
+
+        x, y = get_float_tuple(field)
+        if (x, y) == ('impossible', 'impossible'):
+            return
+        rootx, rooty = draw_tl.winfo_rootx(), draw_tl.winfo_rooty()
+        relx, rely = x - rootx, y - rooty
+        draw_canvas.coords(dot, relx-dot_rad, rely-dot_rad, relx+dot_rad, rely+dot_rad)
+        print(draw_canvas.coords(dot))
+        print(draw_canvas.winfo_pointerxy())
+        print(f"{draw_canvas.winfo_rootx()}, {draw_canvas.winfo_rooty()}")
 
 current_keys = {keyboard.Key.shift:0}
 def on_press(key):
@@ -143,21 +182,29 @@ def on_press(key):
     if key == keyboard.Key.f1:
         user_field.delete(0, len(user_field.get()))
         user_field.insert(0, pag.position())
+        set_dot(draw_u, user_field)
+        calculate()
     if key == keyboard.Key.f2:
         target_field.delete(0, len(target_field.get()))
         target_field.insert(0, pag.position())
-    if key == keyboard.Key.f3:
+        set_dot(draw_t, target_field)
         calculate()
+    if key == keyboard.Key.f3:
+        update_canvas()
     if key == keyboard.Key.f4:
         fire()
     if key == keyboard.Key.f5:
         mode_field.config(text = 'time')
+        calculate()
     if key == keyboard.Key.f6:
         mode_field.config(text = 'mousepos')
+        calculate()
     if key == keyboard.Key.f7:
         mode_field.config(text = 'minv')
+        calculate()
     if key == keyboard.Key.f8:
         mode_field.config(text = 'maxv')
+        calculate()
 def on_release(key):
     current_keys[key] = 0
 
@@ -181,11 +228,17 @@ user_field = tk.Entry(frame1, bg = "grey40", fg = "white", width = 10)
 user_label = tk.Label(frame1, text = "User Position")
 target_field = tk.Entry(frame1, bg = "grey40", fg = "white", width = 10)
 target_label = tk.Label(frame1, text = "Target Position")
+set_borderless_button = tk.Button(frame1, text = "Max/Unmax Graphing Window", command = set_draw_w)
+
+draw_tl = tk.Toplevel(swag)
+draw_canvas = tk.Canvas(draw_tl)
+draw_t = draw_canvas.create_oval(0, 0, 0, 0, '-fill', 'red')
+draw_u = draw_canvas.create_oval(0, 0, 0, 0, '-fill', 'green')
 
 def main():
-           
     swag.title("Swag Farmer 2000")
     swag.geometry("400x200")
+    draw_tl.attributes('-topmost', True, '-transparentcolor', '#f0f0f0')
 
     frame1.place(anchor = 'center', relx = 0.5, rely = 0.5)
     mouse_pos_field.grid(row = 1, column = 0, padx = 3)
@@ -206,13 +259,22 @@ def main():
     user_label.grid(row = 2, column = 2)
     target_field.grid(row = 5, column = 2, padx = 3)
     target_label.grid(row = 4, column = 2)
+    set_borderless_button.grid(row = 6, column = 1)
+
+    draw_canvas.pack(fill = 'both', expand = True)
 
     user_field.insert(0, default_center)
+    target_field.insert(0, (0, 0))
     time_field.insert(0, default_time)
     update_mouse_pos()
         
     listener = keyboard.Listener(on_press = lambda key: on_press(key), on_release = lambda key: on_release(key))
     listener.start()
+
+    # for i in range(100):
+    #     x = (1920*i)//100
+    #     y = (1080*i)//100
+    #     draw_canvas.create_text(x, y, text = f"{i}")
 
     swag.mainloop()
 
