@@ -14,6 +14,8 @@ default_radius = 100
 g = 441.79473198085058122053071945108
 y_offset = 0
 dot_rad = 2
+scribble = True
+traj = 'nil'
 
 def update_mouse_pos():
     mouse_pos_field.config(text = pag.position())
@@ -71,6 +73,9 @@ def calculate():
     power, angle = get_angle_power()
     if (power, angle) != ('impossible', 'impossible'):
         angle, power = (f"{angle:.5f}", f"{power:.5f}")
+    else: 
+        if traj != 'nil':
+            draw_canvas.itemconfig(traj, fill = 'red')
 
     set_dot(draw_t, target_field)
     set_dot(draw_u, user_field)
@@ -84,9 +89,8 @@ def calculate():
     custom_power_field.delete(0, len(custom_power_field.get()))
     custom_power_field.insert(0, power)
 
-    update_canvas()
-
 def get_angle_power():
+    global traj
     mode = mode_field.cget('text')
 
     try: 
@@ -110,7 +114,10 @@ def get_angle_power():
     elif mode == 'mousepos':
         xm, ym = pag.position()
         angle = math.atan2(yu - ym, xm - xu)
-        v = ((g*x**2)/(x*math.sin(2*angle)-2*y*math.cos(angle)**2))**0.5
+        try:
+            v = ((g*x**2)/(x*math.sin(2*angle)-2*y*math.cos(angle)**2))**0.5
+        except ZeroDivisionError: 
+            return 'impossible', 'impossible'
     elif mode == 'minv':
         v = ((y+(y**2+x**2)**0.5)*g)**0.5
         # this can happen because there are no constraints on v
@@ -132,6 +139,13 @@ def get_angle_power():
 
     if type(power) == complex or power < 0 or power > 1:
         return 'impossible', 'impossible'
+
+    if traj != 'nil':
+        draw_canvas.delete(traj)
+    t_points = generate_pts(xu, x, yu, v, math.radians(angle))
+    if len(t_points) > 1:
+        traj = draw_canvas.create_line(t_points, '-fill', 'blue')
+
     return power, angle
 
 def get_power(v_init):
@@ -149,10 +163,6 @@ def get_float_tuple(field):
         field.insert(0, 'invalid pos')
 
     return int_tuple
-
-def update_canvas():
-    
-    return
 
 def set_draw_w():
     if draw_tl.geometry().split('x')[1].split('+')[0] == '1080':
@@ -172,9 +182,24 @@ def set_dot(dot, field):
         rootx, rooty = draw_tl.winfo_rootx(), draw_tl.winfo_rooty()
         relx, rely = x - rootx, y - rooty
         draw_canvas.coords(dot, relx-dot_rad, rely-dot_rad, relx+dot_rad, rely+dot_rad)
-        print(draw_canvas.coords(dot))
-        print(draw_canvas.winfo_pointerxy())
-        print(f"{draw_canvas.winfo_rootx()}, {draw_canvas.winfo_rooty()}")
+
+def toggle_canvas():
+    global scribble
+    if scribble == True:
+        draw_canvas.pack_forget()
+        scribble = False
+    elif scribble == False: 
+        draw_canvas.pack(fill = 'both', expand = True)
+        scribble = True
+
+
+def generate_pts(xu, xd, yu, v, angle):
+
+    def f(x):
+        y = -1*(math.tan(angle)*x-((g*x**2)/(2*v**2*math.cos(angle)**2)))+yu-draw_tl.winfo_rooty()
+        return y
+
+    return [(xp+xu, min(f(xp), 1080)) for xp in range(0, int(xd), int(math.copysign(1, xd)))]
 
 current_keys = {keyboard.Key.shift:0}
 def on_press(key):
@@ -190,7 +215,7 @@ def on_press(key):
         set_dot(draw_t, target_field)
         calculate()
     if key == keyboard.Key.f3:
-        update_canvas()
+        toggle_canvas()
     if key == keyboard.Key.f4:
         fire()
     if key == keyboard.Key.f5:
@@ -238,7 +263,15 @@ draw_u = draw_canvas.create_oval(0, 0, 0, 0, '-fill', 'green')
 def main():
     swag.title("Swag Farmer 2000")
     swag.geometry("400x200")
+    draw_tl.title("Arcanists 2")
     draw_tl.attributes('-topmost', True, '-transparentcolor', '#f0f0f0')
+    draw_tl.state('zoomed')
+
+    try: 
+        draw_tl.iconbitmap('./icons/arc.ico')   
+        swag.iconbitmap('./icons/swag.ico')
+    except: 
+        pass
 
     frame1.place(anchor = 'center', relx = 0.5, rely = 0.5)
     mouse_pos_field.grid(row = 1, column = 0, padx = 3)
@@ -267,8 +300,8 @@ def main():
     target_field.insert(0, (0, 0))
     time_field.insert(0, default_time)
     update_mouse_pos()
-        
-    listener = keyboard.Listener(on_press = lambda key: on_press(key), on_release = lambda key: on_release(key))
+
+    listener = keyboard.Listener(on_press = on_press, on_release = on_release)
     listener.start()
 
     # for i in range(100):
@@ -278,7 +311,8 @@ def main():
 
     swag.mainloop()
 
-print("""                               ##    &&&&&&&%%%* */                             
+print("""
+                               ##    &&&&&&&%%%* */                             
                       /*,, ##&%%%%%%%%%%%&&%%##%####(*,/                        
                  , ,,###%%%%%%%%%##((((##%&&%%#%%###%%###/**(                   
               ,*.#((/////((##%%%%%&&&%%%#/,,,,/(##%##########*.                 
