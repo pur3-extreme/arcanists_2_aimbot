@@ -8,7 +8,7 @@ Email pur3_extreme@protonmail.com if you have suggestions
 ## CONTROLS
 * F1 = set player position on mouse
 * F2 = set target position on mouse
-* F3 = currently nonfunctional
+* F3 = calculate
 * F4 = fire
 * F5 = time mode (projectile reaches target after specified time)
 * F6 = mousepos mode (trajectory is generated based on cursor angle)
