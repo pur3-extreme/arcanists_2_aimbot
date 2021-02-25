@@ -24,6 +24,7 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * if it doesn't fire, the shot is impossible
 
 ## OTHER
+* maximize graphing window before pressing button
 * untested on resolutions other than 1920x1080
 * untested on Linux
 * time 1.48 works well for whisper bombs
