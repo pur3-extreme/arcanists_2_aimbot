@@ -123,7 +123,10 @@ def get_angle_power():
         # this can happen because there are no constraints on v
         if v < min_v:
             v = min_v*1.01 # not using MIN_V helps a bit with accuracy
-            angle = math.atan2(((v**2)+(v**4-g*(g*x**2+2*y*v**2))**0.5)/(g*x),1)
+            try: 
+                angle = math.atan2(((v**2)+(v**4-g*(g*x**2+2*y*v**2))**0.5)/(g*x),1)
+            except ZeroDivisionError: 
+                return 'impossible', 'impossible'
             if x<0: angle -= math.pi
         else:
             angle = (math.pi/2)-0.5*(math.pi/2-math.atan2(y,x))
