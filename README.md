@@ -42,8 +42,12 @@ Email pur3_extreme@protonmail.com if you have suggestions
 
 ## FAQ
 "It's completely frozen" - restart the bot
+
 "My aim is off" - zoom all the way out, make sure your center pixel is precise. You can get your center pixel once in sandbox and then manually enter it in the next time you launch the aimbot. As long as your camera is centered on your guy (pressing C usually works unless you're at the edge of the map) the bot will have precise calculations
+
 "How do I get my center pixel?" - Press F1 in the VERY center of your character. You can do trial and error in sandbox until your bot is making perfect shots
+
 "Will this get me banned?" - It sends legitimate inputs to the game so, unless you make impossible shots and get reported, nobody will be able to detect it. Don't believe me? Test it on an alt account.
+
 
 Need further support? Email pur3_extreme@protonmail.com if you have questions or suggestions.
