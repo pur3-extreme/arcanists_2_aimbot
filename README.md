@@ -36,7 +36,7 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * untested on Linux
 * time 1.48 works well for whisper bombs (they solidify at 1.5)
 * social distancing + whisper bomb = easy 90 damage
-* 1.1 seconds works well for 
+* 1.1 seconds works well for mega boulder
 * F1 needs to be precise, a few pixels off and the trajectory is somewhat messed up
 * keeping the camera centered on the character avoids needing to press F1 every time
 
