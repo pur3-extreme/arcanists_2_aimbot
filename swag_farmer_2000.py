@@ -12,6 +12,7 @@ min_v = 176.71
 max_v = 559.76+min_v
 default_radius = 100
 g = 441.79473198085058122053071945108
+# g = 442
 y_offset = 0
 dot_rad = 2
 scribble = True
@@ -55,6 +56,10 @@ def relative_to_absolute_coords(rel_x, rel_y):
     return (abs_x, abs_y)
 
 def fire():
+    togc = scribble
+    if togc: 
+        toggle_canvas()
+
     angle, power = (custom_angle_field.get(), custom_power_field.get())
 
     if (power, angle) == ('impossible', 'impossible'):
@@ -67,6 +72,9 @@ def fire():
     pag.mouseDown(x, y, button = 'left')
     time.sleep(power * max_power / 1000)
     pag.mouseUp(button = 'left')
+
+    if togc:
+        toggle_canvas()
 
 def calculate():
 
