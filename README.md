@@ -34,6 +34,7 @@ Email pur3_extreme@protonmail.com if you have questions or suggestions
 * mousepos mode (F6) causes the program to use whatever angle your mouse is at when you press F6 (can be held down)
 * minv mode (F7) will cause the program to shoot at least possible power required to make the shot
 * maxv mode (F8) will cause the program to shoot at greatest possible power required to make the shot
+* You can enter values manually in any of the editable fields and the program will use them
 
 ## ADDITIONAL NOTES
 * tracers won't overlay onto the screen properly unless both the game and the graphing window are maximized
