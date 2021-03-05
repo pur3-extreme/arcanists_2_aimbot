@@ -51,4 +51,4 @@ Email pur3_extreme@protonmail.com if you have questions or suggestions
 ## FAQ
 "My aim is off" - zoom all the way out, make sure your user position is precise. You can get your user position once in sandbox and then manually enter it in the next time you launch the program. As long as your camera is centered on your character (pressing C usually works unless you're at the edge of the map)
 
-"How do I get my center pixel?" - Press F1 in the VERY center of your character.
+"How do I get my user position?" - Press F1 in the VERY center of your character.
