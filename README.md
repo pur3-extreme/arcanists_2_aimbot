@@ -31,8 +31,9 @@ Email pur3_extreme@protonmail.com if you have questions or suggestions
 * Press F4
 
 ## ADVANCED USE
-* F6 mode causes the program to use whatever angle your mouse is at when you press F6 (can be held down)
-* F7 will cause the program to shoot at least possible power required to make the shot
+* mousepos mode (F6) causes the program to use whatever angle your mouse is at when you press F6 (can be held down)
+* minv mode (F7) will cause the program to shoot at least possible power required to make the shot
+* maxv mode (F8) will cause the program to shoot at greatest possible power required to make the shot
 
 ## ADDITIONAL NOTES
 * tracers won't overlay onto the screen properly unless both the game and the graphing window are maximized
@@ -44,6 +45,7 @@ Email pur3_extreme@protonmail.com if you have questions or suggestions
 * 1.1 seconds works well for mega boulder
 * F1 needs to be precise, a few pixels off and the trajectory is somewhat messed up
 * keeping the camera centered on the character avoids needing to press F1 every time
+* making high velocity shots at a close range is known to result in relatively large error. I know how to fix it but it requires solving some ugly math stuff so it probably won't be implemented for a while. If anyone likes analytically solving ugly physics equations then email me. 
 
 ## FAQ
 "It's completely frozen" - restart the program
