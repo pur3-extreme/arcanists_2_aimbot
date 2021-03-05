@@ -3,7 +3,14 @@ Aimbot for Arcanists 2
 
 Download Arcanists 2 for free: https://arcanists.online/
 
-Email pur3_extreme@protonmail.com if you have suggestions
+Email pur3_extreme@protonmail.com if you have questions or suggestions
+
+## IMPORTANT
+* This program does not modify game memory/files
+* This program does not read game memory/files
+* This program does not send inputs via modifying or reading game memory/files
+* If you get banned, it's because your gamer skills were too good and the mods couldn't handle your swagger. 
+* If you believe this program is being detected by Arcanists, email me immediately. There is likely an easy workaround that I can implement. 
 
 ## CONTROLS
 * F1 = set player position on mouse
@@ -15,39 +22,32 @@ Email pur3_extreme@protonmail.com if you have suggestions
 * F7 = minv mode (trajectory is generated with minimized velocity)
 * F8 = maxv mode (trajectory is generated with maximized velocity)
 
-## GETTING STARTED
-* Zoom all the way out (important!)
-* Press F1 exactly in the center of your player (important!)
+## INSTRUCTIONS
+* Zoom all the way out
+* Press F1 exactly in the center of your player
 * Press F2 on your target
 * Select your spell
-* Let go of mouse (so as not to bump your aim while charging the shot)
+* Let go of mouse
 * Press F4
 
 ## ADVANCED USE
-* Aimbot is on F5 mode by default
-* F6 mode causes the bot to use whatever angle your mouse is at when you press F6 (if it's impossible, tracer will turn red)
-* F7 will cause the bot to shoot at least possible power required to make the shot
+* F6 mode causes the program to use whatever angle your mouse is at when you press F6 (can be held down)
+* F7 will cause the program to shoot at least possible power required to make the shot
 
 ## ADDITIONAL NOTES
-* tracers won't overlay onto the screen properly unless both your screen and the graphing window are maximized (if you can't get it right just press F3)
-* there is a known bug with occasionally freezing. Restarting should clear that
+* tracers won't overlay onto the screen properly unless both the game and the graphing window are maximized
 * if the shot is impossible the tracer will turn red
 * untested on resolutions other than 1920x1080
-* untested on Linux
+* untested on Linux or Unix based systems
 * time 1.48 works well for whisper bombs (they solidify at 1.5)
-* social distancing + whisper bomb = easy 90 damage
+* social distancing + whisper bomb is a good combo
 * 1.1 seconds works well for mega boulder
 * F1 needs to be precise, a few pixels off and the trajectory is somewhat messed up
 * keeping the camera centered on the character avoids needing to press F1 every time
 
 ## FAQ
-"It's completely frozen" - restart the bot
+"It's completely frozen" - restart the program
 
-"My aim is off" - zoom all the way out, make sure your center pixel is precise. You can get your center pixel once in sandbox and then manually enter it in the next time you launch the aimbot. As long as your camera is centered on your guy (pressing C usually works unless you're at the edge of the map) the bot will have precise calculations
+"My aim is off" - zoom all the way out, make sure your user position is precise. You can get your user position once in sandbox and then manually enter it in the next time you launch the program. As long as your camera is centered on your character (pressing C usually works unless you're at the edge of the map)
 
-"How do I get my center pixel?" - Press F1 in the VERY center of your character. You can do trial and error in sandbox until your bot is making perfect shots
-
-"Will this get me banned?" - It sends legitimate inputs to the game so, unless you make impossible shots and get reported, nobody will be able to detect it. Don't believe me? Test it on an alt account.
-
-
-Need further support? Email pur3_extreme@protonmail.com if you have questions or suggestions.
+"How do I get my center pixel?" - Press F1 in the VERY center of your character.
