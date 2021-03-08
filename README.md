@@ -41,8 +41,7 @@ Email pur3_extreme@protonmail.com if you have questions or suggestions
 * if the shot is impossible the tracer will turn red
 * untested on resolutions other than 1920x1080
 * untested on Linux or Unix based systems
-* time 1.48 works well for whisper bombs (they solidify at 1.5)
-* social distancing + whisper bomb is a good combo
+* ~~time 1.48 works well for whisper bombs (they solidify at 1.5).~~ whisper bomb solidifies at 0.166 seconds now so it's useless haha
 * 1.1 seconds works well for mega boulder
 * F1 needs to be precise, a few pixels off and the trajectory is somewhat messed up
 * keeping the camera centered on the character avoids needing to press F1 every time
